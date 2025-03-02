@@ -1,6 +1,3 @@
-### README.md for `ten-armed-testbed`  
-
-```markdown
 # 10-Armed Testbed
 
 This subrepository contains an implementation of the **k-armed bandit problem** using various action selection strategies, including **ε-greedy**, **optimistic initial values**, **UCB**, and **Gradient Bandit Algorithm (GBA)**. The project provides visualizations to analyze the performance of these methods over multiple simulations.
