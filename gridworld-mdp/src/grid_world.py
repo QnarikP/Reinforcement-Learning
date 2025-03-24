@@ -1,145 +1,144 @@
+"""
+This module implements a simple gridworld environment used to demonstrate state transitions and reward functions in reinforcement learning.
+It defines a square grid with special states A and B (and their corresponding destination states A' and B') where specific rewards are given.
+It also provides a drawing function to visualize either the state-value function or a policy grid (indicated by action arrows).
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.table import Table
+import matplotlib.colors as colors
 
 class GridWorld:
-    # region Constructor
+    """
+    A gridworld environment for demonstrating reinforcement learning dynamics.
+
+    Attributes:
+        grid_size (int): The dimensions of the square grid.
+        A_coordinates (list): Coordinates for special state A.
+        A_prime_coordinates (list): Destination coordinates for state A.
+        B_coordinates (list): Coordinates for special state B.
+        B_prime_coordinates (list): Destination coordinates for state B.
+        SPECIAL_STATES_LABELS (dict): Mapping of special state coordinates to their display labels.
+        actions (list): List of numpy arrays representing possible actions (left, up, right, down).
+        arrows (list): List of arrow symbols corresponding to actions.
+    """
 
     def __init__(self, grid_size=5):
-        # region Summary
-        """
-        Initialize GridWorld environment.
-        :param grid_size: Size of the square grid.
-        """
-        # endregion Summary
+        self.grid_size = grid_size
 
-        # region Fields
-
-        self.grid_size = grid_size  # Size of rectangular (square) gridworld
-
-        # Coordinates of special state A
+        # Special states and their corresponding destination states.
         self.A_coordinates = [0, 1]
-
-        # Coordinates of special state A'
         self.A_prime_coordinates = [4, 1]
-
-        # Coordinates of special state B
         self.B_coordinates = [0, 3]
-
-        # Coordinates of special state B'
         self.B_prime_coordinates = [2, 3]
 
-        # Possible 4 actions on a grid (left, up, right, down)
+        # Mapping of special state coordinates to labels for display.
+        self.SPECIAL_STATES_LABELS = {
+            tuple(self.A_coordinates): " (A)",
+            tuple(self.A_prime_coordinates): " (A')",
+            tuple(self.B_coordinates): " (B)",
+            tuple(self.B_prime_coordinates): " (B')"
+        }
+
+        # Define possible actions (left, up, right, down) as numpy arrays.
         self.actions = [np.array([0, -1]), np.array([-1, 0]), np.array([0, 1]), np.array([1, 0])]
 
-        # Arrows corresponding to actions
+        # Corresponding arrows for policy visualization.
         self.arrows = ['←', '↑', '→', '↓']
 
-        # endregion Fields
-
-    # endregion Constructor
-
-    # region Functions
-
     def step(self, state, action):
-        # region Summary
         """
-        Step from current state to next state.
-        :param state: Current state (denoted as 𝑠)
-        :param action: Action taken in current state (denoted as 𝑎)
-        :return: Next state (denoted as 𝑠′) and obtained reward (denoted as 𝑟)
+        Step from the current state to the next state.
+
+        :param state: Current state as a list of two integers.
+        :param action: Action taken in the current state (numpy array).
+        :return: Tuple of next state (list) and obtained reward (float).
         """
-        # endregion Summary
-
-        # region Body
-
-        # From state A, all 4 actions yield a reward of +10 and take the agent to A'.
+        # Special transitions: from state A and state B yield fixed rewards and destinations.
         if state == self.A_coordinates:
             return self.A_prime_coordinates, 10
-
-        # From state B, all 4 actions yield a reward of +5 and take the agent to B'.
         if state == self.B_coordinates:
             return self.B_prime_coordinates, 5
 
-        # Next state is obtained by taking an action in the current state.
+        # Compute the next state by adding the action vector to the current state.
         next_state = (np.array(state) + action).tolist()
-
-        # Get the next state's coordinates.
         x, y = next_state
 
-        # Actions that would take the agent off the grid leave its location unchanged, but also result in a reward of -1.
+        # If the next state is outside the grid, remain in the same state and incur a penalty.
         if x < 0 or x >= self.grid_size or y < 0 or y >= self.grid_size:
-            reward = -1.0
-            next_state = state
-        else:  # Other actions result in a reward of 0, except those that move the agent out of the special states A and B.
-            reward = 0
+            return state, -1.0
 
-        return next_state, reward
+        # Otherwise, move to the next state with no reward.
+        return next_state, 0
 
-        # endregion Body
-
-    def draw(self, grid, is_policy=False):
-        # region Summary
+    def draw(self, grid, is_policy: bool = False, save_path: str = None):
         """
-        Draw grid of state-value function or grid of policy.
-        :param grid: State-value function or policy grid.
-        :param is_policy: True, if grid represents policy; otherwise, False.
+        Draw a grid representing either the state-value function or a policy.
+
+        This method uses plt.imshow to render the grid with the 'Blues' colormap.
+        It then annotates each cell with either the numeric value (if the cell contains a number)
+        or with the best action arrows (if displaying a policy), and appends special state labels (A, A', B, B')
+        if applicable. Detailed comments explain each step.
+
+        :param grid: 2D numpy array representing state values or policy data.
+        :param is_policy: If True, the grid represents a policy (action arrows); otherwise, numeric state values.
+        :param save_path: Path to save the generated plot. If provided, the plot is saved instead of shown.
         """
-        # endregion Summary
+        # Use the 'Blues' colormap and create a new figure.
+        plt.figure(figsize=(1.5*self.grid_size, 1.5*self.grid_size))
 
-        # region Body
+        # Calculate the mean of the grid to use as the center for the colormap.
+        mean_value = np.mean(grid)
 
-        figure, axis = plt.subplots()
-        axis.set_axis_off()
-        table = Table(axis, bbox=[0, 0, 1, 1])
+        # Create a TwoSlopeNorm to center the colormap at the mean value.
+        norm = colors.TwoSlopeNorm(vmin=np.min(grid), vcenter=mean_value, vmax=np.max(grid))
 
-        width, height = 1.0 / grid.shape[1], 1.0 / grid.shape[0]
+        # Display the grid as an image with the 'Blues' colormap and custom normalization.
+        plt.imshow(grid, cmap='Blues', norm=norm, interpolation='none')
 
-        # Add cells
-        for (i, j), cell_value in np.ndenumerate(grid):
-            if is_policy:
-                # Create an empty list of next values
-                next_values = []
+        # Iterate over each cell in the grid to add annotations.
+        for i in range(grid.shape[0]):
+            for j in range(grid.shape[1]):
+                # Fetch the current cell's value.
+                cell_value = grid[i, j]
 
-                # For every action
-                for action in self.actions:
-                    # Get the current state
-                    state = [i, j]
+                # By default, if the cell contains a number, convert it to a string.
+                # This check ensures we only format numeric values (int, float, or numpy number).
+                if isinstance(cell_value, (int, float, np.number)):
+                    display_text = f"{cell_value}"
+                else:
+                    display_text = str(cell_value)
 
-                    # Get the next state
-                    next_state, _ = self.step(state, action)
+                # If this grid is for a policy, compute the best action(s) for the current cell.
+                if is_policy:
+                    next_values = []
+                    # For each action, get the next state and corresponding grid value.
+                    for action in self.actions:
+                        next_state, _ = self.step([i, j], action)
+                        next_values.append(grid[next_state[0], next_state[1]])
+                    # Find the indices of the actions that yield the maximum next state value.
+                    best_actions = np.where(np.array(next_values) == np.max(next_values))[0]
+                    # Use the corresponding arrow symbols for the best actions.
+                    display_text = ''.join(self.arrows[idx] for idx in best_actions)
 
-                    # Append the grid's next state to the list of next values
-                    next_values.append(grid[next_state[0], next_state[1]])
+                # Before adding special state labels, check if the cell's coordinates exist in the labels dictionary.
+                if (i, j) in self.SPECIAL_STATES_LABELS:
+                    display_text += self.SPECIAL_STATES_LABELS[(i, j)]
 
-                # Get the best actions
-                best_actions = np.where(next_values == np.max(next_values))[0]
+                # Annotate the cell: plt.text uses (j, i) because imshow plots columns as x and rows as y.
+                plt.text(j, i, display_text, ha='center', va='center', color='black', fontsize=12)
 
-                # Add the arrows corresponding to the best actions to the cell value
-                cell_value = ''
-                for best_action in best_actions:
-                    cell_value += self.arrows[best_action]
+        # Set ticks to match the grid dimensions.
+        plt.xticks(np.arange(grid.shape[1]))
+        plt.yticks(np.arange(grid.shape[0]))
+        # Invert the y-axis so that the first row is at the top.
+        # plt.gca().invert_yaxis()
+        # Remove the grid lines for clarity.
+        plt.grid(False)
 
-            # Add special state labels to the cell value
-            if [i, j] == self.A_coordinates:
-                cell_value = str(cell_value) + " (A)"
-            if [i, j] == self.A_prime_coordinates:
-                cell_value = str(cell_value) + " (A')"
-            if [i, j] == self.B_coordinates:
-                cell_value = str(cell_value) + " (B)"
-            if [i, j] == self.B_prime_coordinates:
-                cell_value = str(cell_value) + " (B')"
-
-            table.add_cell(i, j, width, height, text=cell_value, loc='center', facecolor='white')
-
-        # Add external labels for row and column numbers
-        for i in range(len(grid)):
-            table.add_cell(i, -1, width, height, text=i, loc='right', edgecolor='none', facecolor='none')
-            table.add_cell(-1, i, width, height / 2, text=i, loc='center', edgecolor='none', facecolor='none')
-
-        axis.add_table(table)
-        plt.show()
-
-        # endregion Body
-
-    # endregion Functions
+        # Save the plot if a path is provided; otherwise, display the plot.
+        if save_path:
+            plt.savefig(save_path, bbox_inches='tight', dpi=300)
+            plt.close()
+        else:
+            plt.show()
