@@ -37,19 +37,26 @@ The goal of this project is to simulate **reinforcement learning** methods for s
 The following figures are generated in `ten_armed_testbed.ipynb`:
 
 - **Figure 2.1** – Reward distribution across 10 actions  
-![Figure 2.1](images/figure_2_1.png)
+  <img src="images/figure_2_1.png" width="70%">
+
 - **Figure 2.2—action** – Comparison of greedy vs. ε-greedy action selection strategies  
-![Figure 2.2 - action](images/figure_2_2_action.png)
+  <img src="images/figure_2_2_action.png" width="70%">
+
 - **Figure 2.2 - reward** – Comparison of greedy vs. ε-greedy action selection strategies  
-![Figure 2.2 - reward](images/figure_2_2_reward.png)
+  <img src="images/figure_2_2_reward.png" width="70%">
+
 - **Figure 2.3** – Effect of optimistic initial values on action selection  
-![Figure 2.3](images/figure_2_3.png)
+  <img src="images/figure_2_3.png" width="70%">
+
 - **Figure 2.4** – Upper-Confidence-Bound (UCB) action selection  
-![Figure 2.4](images/figure_2_4.png)
+  <img src="images/figure_2_4.png" width="70%">
+
 - **Figure 2.5** – Performance of Gradient Bandit Algorithm (GBA)  
-![Figure 2.5](images/figure_2_5.png)
+  <img src="images/figure_2_5.png" width="70%">
+
 - **Figure 2.6** – Overall comparison of action selection methods  
-![Figure 2.6](images/figure_2_6.png)
+  <img src="images/figure_2_6.png" width="70%">
+
 
 Each figure is saved in the `images/` directory.
 
