@@ -113,7 +113,7 @@ This process is repeated until the policy stabilizes (i.e., no changes in the ch
 
 Below is an example image showing the **final state-values** after applying iterative policy evaluation on a $4 \times 4$ grid:
 
-![Final State Values](generated_images/final_state_values.png)
+<img src="generated_images/final_state_values.png" width="60%">
 
 In the above heatmap, darker cells indicate lower values (further from a terminal), while lighter cells indicate higher values (closer to a terminal).  
 *(Note: This example image is for illustration; actual appearance depends on your code and color normalization.)*

@@ -37,4 +37,4 @@ This project implements **Grid World**, a classic environment used in **Reinforc
 
 After running the value iteration algorithm, we obtain the optimal policy for the Grid World environment:
 
-![Optimal Policy](generated_images/figure_35__optimal_policy.png)
+<img src="generated_images/figure_35__optimal_policy.png" width="60%">
