@@ -1,31 +1,31 @@
-# Tic-Tac-Toe RL Agent
+# Tic‑Tac‑Toe RL Agent
 
 ## Overview
-This project features a Tic-Tac-Toe game with reinforcement learning (RL). It includes a game manager, an RL player learning via temporal-difference methods, and a human player using keyboard input.
 
-## Features
-- **Game Manager**: Oversees turns and determines the winner.
-- **RL Player**: Improves decisions with reinforcement learning.
-- **Human Player**: Plays via keyboard.
-- **State Management**: Tracks board state, computes unique hashes, and evaluates outcomes.
-- **Learning Strategy**: Uses an epsilon-greedy approach.
-- **Policy Persistence**: Saves and loads policies with pickle.
+This project implements a reinforcement learning agent for Tic‑Tac‑Toe. The agent uses temporal‑difference learning (TD(0)) to estimate state values and improve its gameplay over repeated training episodes. This approach follows the ideas discussed in Chapter 6 (Temporal‑Difference Learning) of Sutton & Barto’s *Reinforcement Learning*.
 
-## Key Classes
-### Judge
-- `play()`: Manages gameplay and decides the winner.
-- `reset()`: Prepares for a new game.
+## Project Structure
 
-### RL Player
-- `act()`: Selects actions using epsilon-greedy.
-- `update_state_value_estimates()`: Updates values with RL.
-- `save_policy() / load_policy()`: Stores and retrieves policies.
+```
+tic_tac_toe_rl/
+└── src/
+    ├── tic_tac_toe.py   # Main script that trains, competes, or lets a human play against the RL agent.
+    ├── judge.py         # Organizes gameplay by alternating moves between players.
+    ├── player.py        # Contains implementations for the RL player and the human player.
+    └── state.py         # Defines the board state, including hash computation and status evaluation.
+```
 
-### Human Player
-- `act()`: Takes keyboard input for moves.
+## How to Run
 
-### State
-- `calculate_hash_value()`: Computes a unique board hash.
-- `is_game_ended()`: Checks game status and winner.
-- `get_next_state()`: Generates next board state.
-- `print_state()`: Displays the board.
+To run the project from your terminal, use one of these bash commands:
+
+```bash
+# To train the RL agents:
+python src/tic_tac_toe.py --train
+
+# To run a competition between two trained RL agents:
+python src/tic_tac_toe.py --compete
+
+# To play against the RL agent:
+python src/tic_tac_toe.py --play
+```

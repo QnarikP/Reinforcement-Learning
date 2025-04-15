@@ -1,36 +1,40 @@
-# 10-Armed Testbed
+# 10‑Armed Testbed
 
-This subrepository contains an implementation of the **k-armed bandit problem** using various action selection strategies, including **ε-greedy**, **optimistic initial values**, **UCB**, and **Gradient Bandit Algorithm (GBA)**. The project provides visualizations to analyze the performance of these methods over multiple simulations.
+## Overview
 
----
+This project provides an experimental implementation of the k‑armed bandit problem using different action selection strategies (ε‑greedy, optimistic initial values, UCB, and gradient bandit methods). It is inspired by the multi‑armed bandit discussions in Chapter 2 (Multi‑armed Bandits) of Sutton & Barto’s *Reinforcement Learning*.
 
-## File Structure  
+## Project Structure
 
 ```
 ten-armed-testbed/
-│── src/
-│   ├── bandit.py                # Implementation of the Bandit class
-│── notebooks/
-│   ├── ten_armed_testbed.ipynb  # Jupyter Notebook with experiments and visualizations
-│── images/
-│   ├── figure_2_1.png           # Reward distribution visualization
-│   ├── figure_2_2_reward.png    # Comparison of ε-greedy strategies (average reward)
-│   ├── figure_2_2_action.png    # Comparison of ε-greedy strategies (% optimal action)
-│   ├── figure_2_3.png           # Optimistic vs. realistic initial values
-│   ├── figure_2_4.png           # UCB vs. ε-greedy
-│   ├── figure_2_5.png           # Gradient Bandit Algorithm
-│   ├── figure_2_6.png           # Overall comparison
-│── requirements.txt             # List of dependencies
-│── README.md                    # This file
+├── src/
+│   └── bandit.py                # Implements the Bandit class and action selection strategies.
+├── notebooks/
+│   └── ten_armed_testbed.ipynb  # Jupyter Notebook with experiments and visualizations.
+├── images/
+│   ├── figure_2_1.png           # Reward distribution visualization.
+│   ├── figure_2_2_reward.png    # Average reward comparison for ε‑greedy strategies.
+│   ├── figure_2_2_action.png    # Comparison of optimal action percentages.
+│   ├── figure_2_3.png           # Impact of optimistic initial values.
+│   ├── figure_2_4.png           # UCB vs. ε‑greedy comparison.
+│   ├── figure_2_5.png           # Gradient bandit performance.
+│   └── figure_2_6.png           # Overall comparison of action selection methods.
+└── README.md                    # This documentation file.
 ```
 
----
+## How to Run
 
-## Goal  
+To launch experiments, use the following bash commands from the repository’s root:
 
-The goal of this project is to simulate **reinforcement learning** methods for solving the **k-armed bandit problem** and evaluate their performance using **reward distributions** and **optimal action percentages**.
+```bash
+# Run the notebook (if you prefer a graphical interface):
+jupyter notebook notebooks/ten_armed_testbed.ipynb
 
----
+# Alternatively, execute the main script (if available):
+python src/bandit.py
+```
+
 
 ## Visualizations  
 
@@ -59,13 +63,3 @@ The following figures are generated in `ten_armed_testbed.ipynb`:
 
 
 Each figure is saved in the `images/` directory.
-
----
-
-## Installation  
-
-Ensure you have Python installed, then install the required dependencies:
-
-```bash
-pip install -r requirements.txt
-```
