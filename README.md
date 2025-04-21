@@ -10,6 +10,7 @@ This repository contains various Reinforcement Learning (RL) projects covering d
 - `gridworld-dp`  
 - `gambler-problem`  
 - `blackjack`  
+- `infinite-variance`
 
 Each folder contains a self-contained implementation of a classical RL problem or experiment.
 
