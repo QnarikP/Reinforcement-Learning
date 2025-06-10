@@ -11,6 +11,7 @@ This repository contains various Reinforcement Learning (RL) projects covering d
 - `gambler-problem`  
 - `blackjack`  
 - `infinite-variance`
+- `random walk`
 
 Each folder contains a self-contained implementation of a classical RL problem or experiment.
 
@@ -139,4 +140,3 @@ This ratio re-weights the returns so that the estimator remains unbiased. Two co
 
 - Off-policy methods are crucial when it is impractical or unsafe to deploy the target policy directly.
 - The ability to learn about one policy while following another is a powerful feature in many real-world applications, such as evaluating new strategies without affecting live systems.
-```
