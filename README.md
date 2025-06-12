@@ -12,6 +12,7 @@ This repository contains various Reinforcement Learning (RL) projects covering d
 - `blackjack`  
 - `infinite-variance`
 - `random walk`
+- `windy-gridworld`
 
 Each folder contains a self-contained implementation of a classical RL problem or experiment.
 

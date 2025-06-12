@@ -94,5 +94,6 @@ This will:
 
   * `generated_images/example_6_2.png`
   <img src="book_images/Figure_6_2.PNG" width="70%">
+
   * `generated_images/figure_6_2.png`
   <img src="generated_images/figure_6_2.png" width="70%">
