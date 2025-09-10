@@ -14,6 +14,7 @@ This repository contains various Reinforcement Learning (RL) projects covering d
 - `random walk`
 - `windy-gridworld`
 - `random walk n-step TD experiments`
+- `mazes`
 
 Each folder contains a self-contained implementation of a classical RL problem or experiment.
 
