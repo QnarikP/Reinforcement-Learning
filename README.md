@@ -13,6 +13,7 @@ This repository contains various Reinforcement Learning (RL) projects covering d
 - `infinite-variance`
 - `random walk`
 - `windy-gridworld`
+- `cliff walking`
 - `maximization bias`
 - `random walk n-step TD experiments`
 - `mazes`
