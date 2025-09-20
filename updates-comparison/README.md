@@ -44,7 +44,7 @@ jupyter lab notebooks/expectation_vs_sample.ipynb
 2. Open `expectation_vs_sample.ipynb` and run cells top-to-bottom. The notebook:
 
 * loads `calculate_errors` from `src/expectation_vs_sample.py`,
-* runs the experiment loop over `branching_factors = [2, 10, 100, 1000]`,
+* runs the experiment loop over `branching_factors = [2, 10, 100, 1000, 10000]`,
 * computes averaged RMS errors across `runs = 100`,
 * saves figure to `generated_images/`.
 
@@ -67,14 +67,14 @@ Notes:
 
 
 
-  <img src="book_images/Figure_8_7.png" width="70%">
+  <img src="book_images/Figure_8_7.PNG" width="70%">
 
 
 
 The plot shows estimation error (y-axis) versus number of computations normalized by branching factor (x-axis). Key observations:
 
 * **X-axis scale**: 0 to 2b where b=1 represents the cost of one expected update
-* **Multiple curves**: Each represents a different branching factor (b = 2, 10, 100, 1000)
+* **Multiple curves**: Each represents a different branching factor (b = 2, 10, 100, 1000, 10000)
 * **Error decay**: Sample updates show rapid initial improvement, then diminishing returns
 * **Critical insight**: For large b, sample updates achieve most benefits with a small fraction of expected update cost
 
