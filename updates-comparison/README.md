@@ -50,7 +50,7 @@ jupyter lab notebooks/expectation_vs_sample.ipynb
 
 Notes:
 
-* The default configuration runs 100 independent trials for each branching factor. This typically completes in under a minute.
+* The default configuration runs 100 independent trials for each branching factor. This typically completes in under a minute (about 15 minutes when b=10000).
 * To speed up for quick checks, reduce `runs` in the notebook.
 
 ## Expected outputs & visualizations
@@ -101,7 +101,7 @@ The plot shows estimation error (y-axis) versus number of computations normalize
 
 * **Branching factor effects**:
   - Small `b` (2): Expected updates competitive
-  - Large `b` (1000): Sample updates dramatically more efficient
+  - Large `b` (10000): Sample updates dramatically more efficient
   - Crossover depends on specific problem characteristics and computational constraints
 
 * **Reproducibility**: The implementation uses `np.random.randn(branching_factor)` to generate value distributions and `np.random.choice()` for sampling. Set `np.random.seed()` before experiments for deterministic results.

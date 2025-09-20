@@ -32,14 +32,6 @@ mazes/
 
 ## How to run
 
-Start Jupyter Lab / Notebook from the `mazes/` folder so the notebooks find images with `../book_images` and write output to `../generated_images`:
-
-```bash
-jupyter lab
-# or
-jupyter notebook
-```
-
 Open any of:
 
 * `notebooks/prioritized_sweeping.ipynb`

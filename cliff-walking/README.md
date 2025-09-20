@@ -30,7 +30,7 @@ cliff_walking/
 The experiment uses a 4×12 gridworld that demonstrates the difference between on-policy and off-policy learning:
 
 
-  <img src="book_images/Example_6_6_grid.png" width="70%">
+  <img src="book_images/Example_6_6_grid.PNG" width="70%">
 
 
 - **Grid Layout**: 4 rows × 12 columns with start at bottom-left [3,0] and goal at bottom-right [3,11]
