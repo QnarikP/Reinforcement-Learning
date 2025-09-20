@@ -4,6 +4,10 @@
 
 This repository contains an implementation of the “Windy Gridworld” task as described in Example 6.5 (Windy Gridworld) of Sutton & Barto’s *Reinforcement Learning*. In this episodic task, an agent navigates a 7×10 grid from a start state to a goal state, while a column‐wise “wind” pushes the agent upward. We use ε‐greedy SARSA (on‐policy TD control) to learn the action‐value function  Q(s,a)  and improve the agent’s policy over episodes.
 
+
+<img src="book_images/Example_6_5_inset.PNG" width="60%">
+
+
 Key characteristics:
 - **State space**: All cells in a 7 (height) × 10 (width) grid.  
 - **Action space**: Four deterministic moves (↑, ↓, ←, →), with wind perturbation.  
@@ -21,11 +25,11 @@ windy-gridworld/
 │   ├── Example_6_5_inset.PNG      # Diagram of the grid, start/goal, and wind strengths
 │   └── Example_6_5_graph.PNG      # Learning curve from the textbook example
 ├── generated_images/
-│   └── example_6_5.png           # Learning curve produced by our implementation
+│   └── example_6_5.png            # Learning curve produced by our implementation
 ├── notebooks/
-│   └── windy_grid_world.ipynb    # Jupyter Notebook: walkthrough, code cells, and plots
+│   └── windy_grid_world.ipynb     # Jupyter Notebook: walkthrough, code cells, and plots
 ├── src/
-│   ├── **init**.py                # Package initializer
+│   ├── __init__.py                # Package initializer
 │   └── windy_grid_world.py        # Core implementation: hyper‐parameters, step(), choose\_action(), play()
 └── README.md                      # This documentation file
 
@@ -65,8 +69,8 @@ This will reproduce the learning curve and save it under `generated_images/`.
 
 ## Visualizations
 
-* **Book Inset** – Standard Windy Gridworld schematic <img src="book_images/Example_6_5_inset.PNG" width="60%">
+* **Textbook Graph** – Reference learning curve from Sutton & Barto 
+<img src="book_images/Example_6_5_graph.PNG" width="60%">
 
-* **Textbook Graph** – Reference learning curve from Sutton & Barto <img src="book_images/Example_6_5_graph.PNG" width="60%">
-
-* **Generated Learning Curve** – Output of our SARSA implementation <img src="generated_images/example_6_5.png" width="60%">
+* **Generated Learning Curve** – Output of our SARSA implementation 
+<img src="generated_images/example_6_5.png" width="60%">
