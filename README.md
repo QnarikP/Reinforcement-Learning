@@ -16,6 +16,7 @@ This repository contains various Reinforcement Learning (RL) projects covering d
 - `maximization bias`
 - `random walk n-step TD experiments`
 - `mazes`
+- `expected vs. sample updates`
 
 Each folder contains a self-contained implementation of a classical RL problem or experiment.
 
